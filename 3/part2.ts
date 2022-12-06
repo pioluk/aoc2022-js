@@ -8,9 +8,9 @@ while (lines.length > 0) {
 
 const result = groupped
   .flatMap(([r1, r2, r3]) => {
-    const s1 = new Set(r1.split(''));
-    const s2 = new Set(r2.split(''));
-    const s3 = new Set(r3.split(''));
+    const s1 = new Set(r1.split(""));
+    const s2 = new Set(r2.split(""));
+    const s3 = new Set(r3.split(""));
     return intersectSet(s1, s2, s3).map((c) => getPriority(c));
   })
   .reduce((a, b) => a + b, 0);

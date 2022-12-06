@@ -38,18 +38,27 @@ function getResult(p1: RockPaperScissors, p2: RockPaperScissors): Result {
   throw new Error("Unreachable");
 }
 
-function getFigure(result: Result, figure: RockPaperScissors): RockPaperScissors {
+function getFigure(
+  result: Result,
+  figure: RockPaperScissors,
+): RockPaperScissors {
   if (result === Result.Win) {
     switch (figure) {
-      case RockPaperScissors.Rock: return RockPaperScissors.Paper;
-      case RockPaperScissors.Paper: return RockPaperScissors.Scissors;
-      case RockPaperScissors.Scissors: return RockPaperScissors.Rock;
+      case RockPaperScissors.Rock:
+        return RockPaperScissors.Paper;
+      case RockPaperScissors.Paper:
+        return RockPaperScissors.Scissors;
+      case RockPaperScissors.Scissors:
+        return RockPaperScissors.Rock;
     }
   } else if (result === Result.Lose) {
     switch (figure) {
-      case RockPaperScissors.Rock: return RockPaperScissors.Scissors;
-      case RockPaperScissors.Paper: return RockPaperScissors.Rock;
-      case RockPaperScissors.Scissors: return RockPaperScissors.Paper;
+      case RockPaperScissors.Rock:
+        return RockPaperScissors.Scissors;
+      case RockPaperScissors.Paper:
+        return RockPaperScissors.Rock;
+      case RockPaperScissors.Scissors:
+        return RockPaperScissors.Paper;
     }
   }
 
@@ -85,9 +94,12 @@ function resultToPoint(result: Result) {
 
 function figureToPoint(figure: RockPaperScissors): number {
   switch (figure) {
-    case RockPaperScissors.Rock: return 1;
-    case RockPaperScissors.Paper: return 2;
-    case RockPaperScissors.Scissors: return 3;
+    case RockPaperScissors.Rock:
+      return 1;
+    case RockPaperScissors.Paper:
+      return 2;
+    case RockPaperScissors.Scissors:
+      return 3;
   }
 
   throw new Error("Unreachable");
@@ -101,7 +113,7 @@ const finalPoints = lines.map((line) => {
   const [notation1, notation2] = line.split(" ");
 
   const rps1 = notation1ToRPS(notation1);
-  const result = notation2ToResult(notation2)
+  const result = notation2ToResult(notation2);
   const rps2 = getFigure(result, rps1);
 
   const resultPoints = resultToPoint(result);
