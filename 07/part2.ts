@@ -57,9 +57,8 @@ console.log(
   Math.min(
     ...Array.from(sizeByDirectory.values())
       .filter(
-        (size) =>
-          usedSpace - size < targetUsed,
-      )
+        (size) => usedSpace - size < targetUsed,
+      ),
   ),
 );
 
