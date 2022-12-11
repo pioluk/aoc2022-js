@@ -16,9 +16,10 @@ let i = 0;
 for (const entry of entries) {
   const lines = entry.split("\n");
 
-  const items = lines[1].match(/Starting items: (.+)/)![1].split(", ").map(
-    (x) => parseInt(x),
-  );
+  const items = lines[1]
+    .match(/Starting items: (.+)/)![1]
+    .split(", ")
+    .map((x) => parseInt(x));
   const [, op, val] = lines[2].match(/Operation: new = old (.+) (.+)/)!;
   const value = /\d/.test(val) ? parseInt(val) : val;
   const divisibleBy = parseInt(lines[3].match(/Test: divisible by (\d+)/)![1]);
@@ -62,10 +63,10 @@ for (let i = 0; i < 20; ++i) {
 }
 
 console.log(
-  Object.values(inspectionCount).toSorted((a, b) => b - a).slice(0, 2).reduce(
-    (a, b) => a * b,
-    1,
-  ),
+  Object.values(inspectionCount)
+    .toSorted((a, b) => b - a)
+    .slice(0, 2)
+    .reduce((a, b) => a * b, 1),
 );
 
 function op(x: number, operation: Monkey["operation"]): number {

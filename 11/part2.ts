@@ -18,9 +18,10 @@ let i = 0;
 for (const entry of entries) {
   const lines = entry.split("\n");
 
-  const items = lines[1].match(/Starting items: (.+)/)![1].split(", ").map(
-    (x) => (parseInt(x)),
-  );
+  const items = lines[1]
+    .match(/Starting items: (.+)/)![1]
+    .split(", ")
+    .map((x) => parseInt(x));
   const [, op, val] = lines[2].match(/Operation: new = old (.+) (.+)/)!;
   const value = /\d/.test(val) ? parseInt(val) : val;
   const divisibleBy = parseInt(lines[3].match(/Test: divisible by (\d+)/)![1]);
@@ -56,7 +57,7 @@ for (let i = 0; i < 10000; ++i) {
 
       const item = items.shift()!;
       const worry = op(item, operation) % probablyNotLcm;
-      if (worry % (divisibleBy) === 0) {
+      if (worry % divisibleBy === 0) {
         monkeys[t].items.push(worry);
       } else {
         monkeys[f].items.push(worry);
@@ -66,14 +67,14 @@ for (let i = 0; i < 10000; ++i) {
 }
 
 console.log(
-  Object.values(inspectionCount).toSorted((a, b) => b > a ? 1 : -1).slice(0, 2).reduce(
-    (a, b) => a * b,
-    1,
-  ),
+  Object.values(inspectionCount)
+    .toSorted((a, b) => (b > a ? 1 : -1))
+    .slice(0, 2)
+    .reduce((a, b) => a * b, 1),
 );
 
 function op(x: number, operation: Monkey["operation"]): number {
-  const value = (typeof operation[1] === "string" ? x : operation[1]);
+  const value = typeof operation[1] === "string" ? x : operation[1];
   if (operation[0] === "+") {
     return x + value;
   } else if (operation[0] === "-") {
