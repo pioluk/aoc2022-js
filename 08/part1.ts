@@ -25,7 +25,7 @@ for (let x = 1; x < width - 1; ++x) {
     const leftHeights = range(0, x).map((mx) => getHeight(mx, y));
     const rightHeights = range(x + 1, width).map((mx) => getHeight(mx, y));
     const topHeights = range(0, y).map((my) => getHeight(x, my));
-    const bottomHeights = range(y + 1, width).map((my) => getHeight(x, my));
+    const bottomHeights = range(y + 1, height).map((my) => getHeight(x, my));
 
     const checkVisibility = (height: number) => height < currentHeight;
 

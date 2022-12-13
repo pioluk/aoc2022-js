@@ -32,7 +32,7 @@ for (let x = 1; x < width - 1; ++x) {
     const allRightHeights = range(x + 1, width).map((mx) => getHeight(mx, y));
     const allTopHeights = range(0, y).map((my) => getHeight(x, my))
       .toReversed();
-    const allBottomHeights = range(y + 1, width).map((my) => getHeight(x, my));
+    const allBottomHeights = range(y + 1, height).map((my) => getHeight(x, my));
 
     const topScore = countVisibleTrees(currentHeight, allTopHeights);
     const rightScore = countVisibleTrees(currentHeight, allRightHeights);
